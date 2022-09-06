@@ -25,7 +25,7 @@ const SignIn: React.FC = () => {
     if (!usernameValue) setUsernameError(true);
     if (!passwordValue) setPasswordError(true);
 
-    if (usernameError || passwordError) {
+    if (!usernameValue || !passwordValue) {
       toast.error('Please fill all fields');
       return;
     }
@@ -62,7 +62,7 @@ const SignIn: React.FC = () => {
           type="password"
           onChange={(e) => handleChangeValue(e, setPasswordValue, setPasswordError)}
         />
-        <p>Forgot Password?</p>
+        <p onClick={() => toast.info('Function will be implemented in the future!')}>Forgot Password?</p>
       </FormContainer>
       <ButtonContainer>
         <Button variant="contained" onClick={handleLogInUser}>
