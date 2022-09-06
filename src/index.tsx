@@ -4,6 +4,7 @@ import App from './App';
 import { setupServer } from './services/mirage/server';
 import { ToastContainer } from 'react-toastify';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 if (process.env.NODE_ENV === 'development') {
   setupServer();
