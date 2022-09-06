@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    font-family: "Montserrat";
   }
 
   body {
@@ -17,6 +18,23 @@ const GlobalStyle = createGlobalStyle`
 
   a:hover, button:hover {
     cursor: pointer;
+  }
+
+  a:visited {
+    color: #834825;
+  }
+
+  button.MuiButton-contained {
+    padding: 12px 51px;
+    border-radius: 24px;
+    text-transform: none;
+    font-weight: 700;
+    font-family: "Montserrat";
+  }
+
+  h1 {
+    font-weight: 400;
+    color: #834825;
   }
 `;
 
