@@ -2,6 +2,8 @@ import React from "react"
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+import PrivateRoute from './privateRoute'
+
 import {
   SignIn,
   SignUp,
@@ -19,15 +21,15 @@ const Router: React.FC = () => {
         <Route path="/" exact component={SignIn} />
         <Route path="/signup" component={SignUp} />
 
-        <Route path="/new/journal" component={CreateJournal} />
-        <Route path="/new/note/:journalId" component={CreateNote} />
-        <Route exact path="/my-journals" component={JournalsList} />
-        <Route
+        <PrivateRoute path="/new/journal" component={CreateJournal} />
+        <PrivateRoute path="/new/note/:journalId" component={CreateNote} />
+        <PrivateRoute exact path="/my-journals" component={JournalsList} />
+        <PrivateRoute
           exact
           component={Journal}
           path="/my-journals/:journalId/"
         />
-        <Route
+        <PrivateRoute
           path="/my-journals/:journalId/:noteId"
           component={Note}
         />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import { toast } from 'react-toastify';
@@ -13,6 +13,7 @@ import {
 
 import { Logo } from '../../assets';
 import { handleChangeValue } from '../../utils/strings';
+import { useAuth } from '../../hooks/useAuth'
 
 const SignUp: React.FC = () => {
   const [usernameValue, setUsernameValue] = useState("")
@@ -21,8 +22,9 @@ const SignUp: React.FC = () => {
   const [usernameError, setUsernameError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const history = useHistory()
+  const { isAuthenticated, createAccount } = useAuth()
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
     if (!usernameValue) setUsernameError(true);
     if (!passwordValue) setPasswordError(true);
 
@@ -31,9 +33,19 @@ const SignUp: React.FC = () => {
       return;
     }
 
-    console.log(usernameValue, passwordValue);
-    history.goBack()
+    const createAccountSuccess = await createAccount(
+      usernameValue,
+      passwordValue,
+      emailValue
+    );
+
+    if (createAccountSuccess) history.goBack()
+    else toast.error('Username already used!')
   }
+
+  useEffect(() => {
+    if (isAuthenticated) history.push('my-journals');
+  }, [history, isAuthenticated]);
 
   return(
     <Container>

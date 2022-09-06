@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import { toast } from 'react-toastify';
@@ -13,6 +13,7 @@ import {
 
 import { Logo } from '../../assets';
 import { handleChangeValue } from '../../utils/strings';
+import { useAuth } from '../../hooks/useAuth'
 
 const SignIn: React.FC = () => {
   const [usernameValue, setUsernameValue] = useState("")
@@ -20,8 +21,9 @@ const SignIn: React.FC = () => {
   const [usernameError, setUsernameError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const history = useHistory()
+  const { isAuthenticated, authenticate } = useAuth()
 
-  const handleLogInUser = () => {
+  const handleLogInUser = async () => {
     if (!usernameValue) setUsernameError(true);
     if (!passwordValue) setPasswordError(true);
 
@@ -30,9 +32,15 @@ const SignIn: React.FC = () => {
       return;
     }
 
-    console.log(usernameValue, passwordValue);
-    history.push('my-journals')
+    const authenticateSucess = await authenticate(usernameValue, passwordValue);
+
+    if (!authenticateSucess) toast.error('Username or password incorrect!')
+    else history.push('my-journals')
   }
+
+  useEffect(() => {
+    if (isAuthenticated) history.push('my-journals');
+  }, [history, isAuthenticated]);
 
   return(
     <Container>
