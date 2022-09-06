@@ -12,6 +12,7 @@ import {
 } from './styles';
 
 import { Logo } from '../../assets';
+import { handleChangeValue } from '../../utils/strings';
 
 const SignIn: React.FC = () => {
   const [usernameValue, setUsernameValue] = useState("")
@@ -19,15 +20,6 @@ const SignIn: React.FC = () => {
   const [usernameError, setUsernameError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
   const history = useHistory()
-
-  const handleChangeValue = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    setValueFunction: React.Dispatch<React.SetStateAction<string>>,
-    setErrorFunction: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => {
-    setValueFunction(e.target.value);
-    setErrorFunction(false);
-  }
 
   const handleLogInUser = () => {
     if (!usernameValue) setUsernameError(true);
