@@ -14,7 +14,6 @@ import {
 import { Logo } from '../../assets'
 import { useAuth } from '../../hooks/useAuth';
 import { handleChangeValue } from '../../utils/strings';
-// import { createJournal } from '../../utils/apiFunctions';
 import { Journal } from '../../interfaces/journal.interface'
 import http from '../../services/api';
 import { createNote } from '../../utils/apiFunctions';
