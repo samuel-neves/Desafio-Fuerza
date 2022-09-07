@@ -29,3 +29,13 @@ export const EmptyContentContainer = styled.div`
     font-weight: 600;
   }
 `;
+
+export const JournalsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-top: 42px;
+`;
+
+export const JournalContainer = styled.div`
+  margin-bottom: 24px;
+`;
