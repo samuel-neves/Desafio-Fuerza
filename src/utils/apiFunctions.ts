@@ -9,6 +9,16 @@ const createJournal = async (userId: string, title: string) => {
   return response;
 }
 
+const createNote = async (journalId: string, title: string, content: string) => {
+  const response = await http.post(`/journals/entry/${journalId}`, {
+    title,
+    content,
+  });
+
+  return response;
+}
+
 export {
   createJournal,
+  createNote,
 }
