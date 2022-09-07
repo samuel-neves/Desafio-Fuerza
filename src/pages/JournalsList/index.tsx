@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
@@ -25,7 +24,6 @@ const JournalsList: React.FC = () => {
   useEffect(() => {
     http.get(`/journals/${user.id}`).then((response: any) => {
       if (!response) {
-        toast.error('error fetching journals')
         logout()
         return null
       }
@@ -38,14 +36,14 @@ const JournalsList: React.FC = () => {
     <Container>
       <HeaderContainer>
         <img src={Logo} alt="Logo" />
-        {journals?.length && (
+        {journals && journals.length ? (
           <Button
             variant='outlined'
             onClick={() => history.push('/new/journal')}
           >
             + Add Journal
           </Button>
-        )}
+        ) : ('')}
       </HeaderContainer>
       {!journals?.length ? (
         <EmptyContentContainer>
