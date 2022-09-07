@@ -1,4 +1,5 @@
 import React, { createContext, ReactNode, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import http from '../services/api'
 import { AuthResponse } from '../services/mirage/routes/user'
@@ -44,8 +45,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       password
     })
 
-    console.log(response);
-
     if (!response) return false
 
     const authenticatedUser = {
@@ -77,6 +76,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
     if (!response) return false
 
+    toast.success('Account successfully created')
     return true
   }
 

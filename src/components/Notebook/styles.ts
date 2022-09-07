@@ -6,6 +6,12 @@ interface NotebookProps {
 
 export const Container = styled.div`
   display: flex;
+  width: fit-content;
+  margin: 0 auto;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const ContentContainer = styled.div<NotebookProps>`
@@ -25,6 +31,8 @@ export const ContentContainer = styled.div<NotebookProps>`
 
   p {
     width: 100%;
+    overflow: auto;
+    max-width: ${props => props.type === 'creation' ? '212px' : '132px'};
     text-align: center;
     color: ${props => props.type === 'secondary' ? '#ffffff' : '#000000'};
     font-weight: 700;
